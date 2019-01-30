@@ -1,0 +1,48 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "An AWS Serverless Application that uses the ASP.NET Core framework running in Amazon Lambda.",
+  "Parameters": {},
+  "Conditions": {},
+  "Resources": {
+    "LabelBucket": {
+      "Type": "AWS::S3::Bucket"
+    },
+    "DetectLabelsFunctionPS": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "DetectLabels::DetectLabels.Bootstrap::ExecuteFunction",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "s3://ng.amsxbg/DetectLabels.zip",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Role": "arn:aws:iam::812570870442:role/LambdaAdmin",
+        "Policies": [
+          "AWSLambdaFullAccess"
+        ],
+        "Environment": {
+          "Variables": {}
+        },
+        "Events": {
+          "DetectLabelsBucket": {
+            "Type": "S3",
+            "Properties": {
+              "Bucket": {
+                "Ref": "LabelBucket"
+              },
+              "Events": "s3:ObjectCreated:*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "LabelBucket": {
+      "Description": "Detect Label bucket name",
+      "Value": {
+        "Ref": "LabelBucket"
+      }
+    }
+  }
+}
