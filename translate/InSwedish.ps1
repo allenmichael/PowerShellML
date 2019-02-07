@@ -19,6 +19,6 @@ $path = './translate/greeting-en.mp3'
 $text = Read-Host -Prompt "Speak: "
 Speak -Path $path -Text $text -Voice "Amy"
 
-$convertedPath = './translate/greeting-fr.mp3'
-$convert = ConvertTo-TRNTargetLanguage -Text $text -SourceLanguageCode 'en' -TargetLanguageCode 'fr'
-Speak -Path $convertedPath -Text $convert -Voice "Celine"
+$convertedPath = './translate/greeting-sv.mp3'
+$convert = ConvertTo-TRNTargetLanguage -Text $text -SourceLanguageCode 'en' -TargetLanguageCode 'sv'
+Speak -Path $convertedPath -Text $convert -Voice "Astrid"

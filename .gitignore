@@ -5,3 +5,5 @@ DetectLabels.zip
 cropped_podcast.mp3
 podcast.mp3
 results.json
+aml-*
+greeting-*

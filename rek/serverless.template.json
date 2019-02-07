@@ -13,7 +13,7 @@
       "Properties": {
         "Handler": "DetectLabels::DetectLabels.Bootstrap::ExecuteFunction",
         "Runtime": "dotnetcore2.1",
-        "CodeUri": "s3://ng.amsxbg/DetectLabels.zip",
+        "CodeUri": "s3://amsxbg-ps1-eu/DetectLabels.zip",
         "MemorySize": 512,
         "Timeout": 30,
         "Role": "arn:aws:iam::812570870442:role/LambdaAdmin",

@@ -1,7 +1,8 @@
 Import-Module AWSPowerShell.NetCore
 
 $main = Invoke-RestMethod -Uri https://www.reddit.com/r/aws/.json  
-$comments = Invoke-RestMethod -Uri "$($main.data.children[0].data.url)/.json"
+$commentUri = $("https://www.reddit.com" + $main.data.children[0].data.permalink + "/.json")
+$comments = Invoke-RestMethod -Uri $commentUri
 $firstComment = $comments.data.children[1].data.body 
 Write-Host $firstComment
 $lang = Find-COMPDominantLanguage -Text $firstComment 
@@ -15,4 +16,4 @@ $syntax | ForEach-Object { Write-Host "$($_.Text) - $($_.PartOfSpeech.Tag) - $($
 
 Write-Host "-----------"
 Write-Host "NOUNS Only:"
-$syntax | Where-Object { $_.PartOfSpeech.Tag -eq "PROPN" } | ForEach-Object { Write-Host $_.Text }
+$syntax | Where-Object { $_.PartOfSpeech.Tag -eq "NOUN" } | ForEach-Object { Write-Host $_.Text }
